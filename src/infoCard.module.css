@@ -1,0 +1,31 @@
+.Card{
+    width:290px;
+    margin:1%;
+    padding:2%;
+    font-size:14px;
+    color:black;
+    
+}
+img{
+    margin:auto;
+}
+.cardtext{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+}
+@media only screen and (max-width: 1212px) {
+    .Card {
+      width:350px;
+      font-size: 16px;
+    }
+  }
+
+
+
+
+
+  body{
+    background-color: black;
+    color: whitesmoke
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classes from './selectionPanel.module.css'
 import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
 
 
@@ -112,8 +113,11 @@ render()
 
     return(
         <div>
-        <h1>SpaceX</h1>
-            <h4>Launch Year</h4>
+            <h1>SpaceX</h1>
+        <div className={classes.mainbody}>
+        
+        <div className={classes.sidepanel}>
+        <h4>Launch Year</h4>
             <div>
             {
                        
@@ -126,6 +130,7 @@ render()
             }
 
             </div>
+            <br />
             <h4>Successful Launch</h4>
             <div>
             
@@ -133,6 +138,7 @@ render()
                 <Button color="success" onClick={()=>this.changelaunch(false)}>false</Button>
                 
             </div>
+            <br />
             <h4>Successful Landing</h4>
             <div>
             
@@ -140,20 +146,16 @@ render()
                 <Button color="success" onClick={()=>this.changelanding(false)}>false</Button>
                 
             </div>
-            {
-                this.state.loading?
-                <div>loading...</div>:""
-            }
-            {
-                this.state.year===2005?
-                <div>please select year</div>:""
-            }
-            {
-                !this.state.launch?
-                <div>please select launch(there are none that haven't been launched)</div>:
-                    this.state.d.length===0&&!this.state.loading?<div>no results, please change options</div>:''
-                
-            }
+                <br />
+                selected: {this.state.year===2005?"not selected":this.state.year}, launch: {this.state.launch?"true":"false"}, landing: {this.state.landing?"true":"false"}
+               
+            
+           
+
+            
+
+        </div>
+            
             {
                 this.state.error?
                 <div>
@@ -179,26 +181,31 @@ render()
                 </div>
                 :""
             }
+            <div className={classes.infopanel}>
             {
+                this.state.d.length>0?
                         this.state.d.map((p)=>{
                             console.log(p)
                             return(
-                                <div>
+                                
                                     <InfoCard data={p}/>
-                
-                                </div>
-                
-                              
+                                
                             )
                             
                         })
-                    }
-                    
+                        :this.state.loading?
+                        <div>loading...</div>:
+                        this.state.year===2005?
+                <div><br />please select year</div>:!this.state.launch?
+                <div><br />please select launch=true(there are none that haven't been launched)</div>:
+                        !this.state.loading?<div>no results, please change options</div>:''
+            }
 
-                    
-
-        
+            </div>
         </div>
+
+        </div>
+        
     )
     }
 }
